@@ -21,7 +21,7 @@ Find out the new set of neighbors for each of these devices.
 - move the devices to new locations [mem func 4]
 - find new neighbors [mem func 3]
 */
-#include "Point.cpp"
+#include "16_Point.cpp"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
