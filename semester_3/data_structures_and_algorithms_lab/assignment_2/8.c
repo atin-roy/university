@@ -4,9 +4,10 @@
 #define MAX_COLS 100
 
 void inputMatrix(int rows, int cols, int matrix[MAX_ROWS][MAX_COLS]) {
+  int i, j;
   printf("Enter the elements of the matrix:\n");
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
+  for (i = 0; i < rows; i++) {
+    for (j = 0; j < cols; j++) {
       scanf("%d", &matrix[i][j]);
     }
   }
@@ -14,9 +15,10 @@ void inputMatrix(int rows, int cols, int matrix[MAX_ROWS][MAX_COLS]) {
 
 void countNonZeroElements(int rows, int cols, int matrix[MAX_ROWS][MAX_COLS],
                           int nonZeroCount[MAX_ROWS]) {
-  for (int i = 0; i < rows; i++) {
+  int i, j;
+  for (i = 0; i < rows; i++) {
     nonZeroCount[i] = 0;
-    for (int j = 0; j < cols; j++) {
+    for (j = 0; j < cols; j++) {
       if (matrix[i][j] != 0) {
         nonZeroCount[i]++;
       }
@@ -25,8 +27,9 @@ void countNonZeroElements(int rows, int cols, int matrix[MAX_ROWS][MAX_COLS],
 }
 
 void printNonZeroCount(int rows, int nonZeroCount[MAX_ROWS]) {
+  int i;
   printf("Number of non-zero elements in each row:\n");
-  for (int i = 0; i < rows; i++) {
+  for (i = 0; i < rows; i++) {
     printf("Row %d: %d non-zero elements\n", i + 1, nonZeroCount[i]);
   }
 }

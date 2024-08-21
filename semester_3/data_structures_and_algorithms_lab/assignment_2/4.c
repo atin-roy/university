@@ -26,13 +26,13 @@ int evaluatePolynomial(struct Node *poly, int x) {
 }
 
 struct Node *inputPolynomial() {
-  int n, coef, exp;
+  int n, i, coef, exp;
   struct Node *head = NULL, **lastPtrRef = &head;
 
   printf("Enter the number of terms: ");
   scanf("%d", &n);
 
-  for (int i = 0; i < n; i++) {
+  for (i = 0; i < n; i++) {
     printf("Enter coefficient and exponent: ");
     scanf("%d %d", &coef, &exp);
     *lastPtrRef = createNode(coef, exp);
