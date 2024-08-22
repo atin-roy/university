@@ -14,7 +14,6 @@ private:
   float cgpa;
 
 public:
-  // Default constructor
   GradeCard() {
     dept_name = "";
     student_name = "";
@@ -26,7 +25,6 @@ public:
     cgpa = 0.0;
   }
 
-  // Parameterized constructor
   GradeCard(string dept, string student, int r, int s, int m[5]) {
     dept_name = dept;
     student_name = student;
@@ -37,10 +35,8 @@ public:
       marks[i] = m[i];
       cgpa += marks[i];
     }
-    cgpa = (cgpa / 500) * 10; // Assuming CGPA is based on 500 marks (5 subjects
-                              // * 100 max per subject)
+    cgpa = (cgpa / 500) * 10;
   }
-  // Setters
   void setDeptName(string dept) { dept_name = dept; }
 
   void setStudentName(string student) { student_name = student; }
@@ -57,7 +53,6 @@ public:
 
   void setCGPA(float c) { cgpa = c; }
 
-  // Getters
   string getDeptName() const { return dept_name; }
 
   string getStudentName() const { return student_name; }
@@ -72,7 +67,6 @@ public:
     }
   }
   float getCGPA() const { return cgpa; }
-  // Method to display the GradeCard details
   void display() const {
     cout << "Department: " << dept_name << endl;
     cout << "Student Name: " << student_name << endl;
@@ -86,6 +80,18 @@ public:
     cout << "CGPA: " << cgpa << endl;
   }
 };
+string randomName() {
+  string capital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  string lower = "abcdefghijklmnopqrstuvwxyz";
+  string name = "";
+
+  int length = rand() % 10 + 1;
+  name += capital[rand() % 26];
+  for (int i = 1; i < length; i++) {
+    name += lower[rand() % 26];
+  }
+  return name;
+}
 
 vector<GradeCard> createGradeCards(int n) {
   vector<GradeCard> cards;
@@ -96,13 +102,13 @@ vector<GradeCard> createGradeCards(int n) {
   for (int i = 0; i < n; i++) {
     int marks[5];
     for (int j = 0; j < 5; j++) {
-      marks[j] = rand() % 100 + 1; // Generates marks between 1 and 100
+      marks[j] = rand() % 100 + 1;
     }
 
     cards.emplace_back(depts[rand() % 6], randomName(), i + 1, 3, marks);
   }
 
-  return cards; // Return the vector of GradeCard objects
+  return cards;
 }
 
 GradeCard &findHighestCGPA(vector<GradeCard> &cards) {
@@ -120,15 +126,12 @@ GradeCard &findHighestCGPA(vector<GradeCard> &cards) {
 }
 
 int main() {
-  srand(time(0)); // Seed for random number generation
+  srand(time(0));
 
-  // Create 60 GradeCard objects
   vector<GradeCard> cards = createGradeCards(60);
 
-  // Find the GradeCard with the highest CGPA
   GradeCard &topStudent = findHighestCGPA(cards);
 
-  // Display the details of the student with the highest CGPA
   cout << "Student with the highest CGPA:\n";
   cout << "Name: " << topStudent.getStudentName() << endl;
   cout << "Roll Number: " << topStudent.getRoll() << endl;

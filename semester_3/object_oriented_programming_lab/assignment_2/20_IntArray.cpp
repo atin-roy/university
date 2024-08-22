@@ -1,16 +1,3 @@
-/*20. Write a class IntArray for one dimensional integer array. Implement the
-necessary constructor, copy constructor, and destructor (if necessary) in this
-class. Implement other member functions to perform operations, such adding two
-arrays, reversing an array, sorting an array etc. Create an IntArray object
-having elements 1, 2 and 3 in it. Print its elements. Now, create another
-IntArray object which is an exact copy of the previous object. Print its
-elements. Now, reverse the elements of the last object. Finally print elements
-of both the objects.
-*/
-// todo constructor, copy constructor, destructor
-// todo operations -> add two arrays, reverse an array, sort an array, print
-// array
-
 #include <iostream>
 
 class IntArray {
@@ -19,7 +6,6 @@ private:
   int *data;
 
 public:
-  // constructors
   IntArray() : size(0), data(nullptr){};
 
   IntArray(int size) : size(size) {
@@ -38,7 +24,6 @@ public:
 
   ~IntArray() { delete[] data; }
 
-  // member functions
   void insert(int num) {
     size_t newSize = (size + 1) * sizeof(int);
     int *newData = (int *)realloc(data, newSize);
@@ -50,7 +35,6 @@ public:
     size += 1;
   }
 
-  // adds elements of other object into this object, increasing size
   void add(const IntArray &other) {
     size_t newSize = (size + other.size) * sizeof(int);
     int *newData = (int *)realloc(data, newSize);
@@ -81,10 +65,8 @@ public:
 
   void sort() {
     for (int i = 0; i < size - 1; i++) {
-      // Last i elements are already sorted
       for (int j = 0; j < size - i - 1; j++) {
         if (data[j] > data[j + 1]) {
-          // Swap data[j] and data[j + 1]
           int temp = data[j];
           data[j] = data[j + 1];
           data[j + 1] = temp;

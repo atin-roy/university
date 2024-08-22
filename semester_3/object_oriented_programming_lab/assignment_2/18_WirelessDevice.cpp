@@ -1,33 +1,41 @@
-/*
-Write a class that represents a class of wireless device. A device has a
-location (point object may be used), a fixed unique id, and a fixed circular
-transmission range. Write suitable constructors and member functions for this
-class. Instantiates 10 such devices. Choose location (coordinates) and
-transmission range of the devices randomly. Now, for each of these devices, find
-the neighbor devices (i.e. devices that belong to the transmission range).
-Suppose, all of these devices have moved to a new location (randomly chosen).
-Find out the new set of neighbors for each of these devices.
-*/
-/*
-- use Point for location
-- id (int)
-- range
-
-- constructors
-
-- 10 device
-- choose locations and range randomly (mem funcs 2)
-- for each device find neighbor (range <= this.range) [mem func 3]
-- move the devices to new locations [mem func 4]
-- find new neighbors [mem func 3]
-*/
-#include "16_Point.cpp"
+#include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <vector>
-
 using namespace std;
+
+class Point {
+private:
+  double x, y, z;
+
+public:
+  Point() = default;
+
+  Point(double x, double y = 0, double z = 0) {
+    this->x = x;
+    this->y = y;
+    this->z = z;
+  }
+
+  double getX() const { return x; }
+  double getY() const { return y; }
+  double getZ() const { return z; }
+
+  void setX(double x) { this->x = x; }
+  void setY(double y) { this->y = y; }
+  void setZ(double z) { this->z = z; }
+
+  double distance(const Point &other) const {
+    double x_dis = other.x - x;
+    double y_dis = other.y - y;
+    double z_dis = other.z - z;
+
+    double distance = sqrt(x_dis * x_dis + y_dis * y_dis + z_dis * z_dis);
+    return distance;
+  }
+
+  void display() { cout << "(" << x << "," << y << "," << z << ")"; }
+};
 
 class WirelessDevice {
 private:
@@ -36,7 +44,6 @@ private:
   double transmissionRange;
 
 public:
-  // constructors
   WirelessDevice() = default;
 
   WirelessDevice(int id, double x, double y, double z, int transmissionRange)
@@ -99,22 +106,18 @@ int main() {
   srand(time(0));
   WirelessDevice devices[10];
 
-  // initialize all objects
   for (int i = 0; i < 10; i++) {
     devices[i].setRandomId();
     devices[i].setRandomLocation();
     devices[i].setRandomTransmissionRange();
   }
 
-  // find neighbours
   findNeighbors(devices, 10);
 
-  // move the devices
   for (int i = 0; i < 10; i++) {
     devices[i].moveDevice();
   }
 
-  // re-find the neighbors
   cout << "\nAfter moving the devices, new neighbors are: \n" << endl;
   findNeighbors(devices, 10);
 

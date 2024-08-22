@@ -4,15 +4,13 @@
 class Demo {
 private:
   std::string name;
-  mutable int accessCount; // Mutable data member
+  mutable int accessCount;
 
 public:
-  // Constructor
   Demo(std::string name) : name(name), accessCount(0) {}
 
-  // Constant member function that returns the name
   std::string getName() const {
-    accessCount++; // Allowed because accessCount is mutable
+    accessCount++;
     return name;
   }
 

@@ -20,7 +20,6 @@ public:
   Book(const Book &other)
       : isbn(other.isbn), title(other.title), author(other.author),
         price(other.price) {}
-  // Getters
   std::string getISBN() const { return isbn; }
 
   std::string getTitle() const { return title; }
@@ -29,7 +28,6 @@ public:
 
   float getPrice() const { return price; }
 
-  // Setters
   void setISBN(const std::string &newIsbn) { isbn = newIsbn; }
 
   void setTitle(const std::string &newTitle) { title = newTitle; }
@@ -43,7 +41,7 @@ public:
     string isbn = "";
 
     for (int i = 0; i < 10; i++) {
-      isbn += opts[rand() % 36]; // Subsequent letters in lowercase
+      isbn += opts[rand() % 36];
     }
     return isbn;
   }
@@ -53,11 +51,11 @@ public:
     string lower = "abcdefghijklmnopqrstuvwxyz";
     string name = "";
 
-    int length = rand() % 10 + 1; // Random length between 1 and 10
-    name += capital[rand() % 26]; // First letter capitalized
+    int length = rand() % 10 + 1;
+    name += capital[rand() % 26];
 
     for (int i = 1; i < length; i++) {
-      name += lower[rand() % 26]; // Subsequent letters in lowercase
+      name += lower[rand() % 26];
     }
     return name;
   }
@@ -76,16 +74,13 @@ public:
 
   void addBook(const Book &book) { bookList.emplace_back(book); }
 
-  // Setter for bookList
   void setBookList(const std::vector<Book> &newBookList) {
     bookList = newBookList;
-    numberOfBooks = bookList.size(); // Automatically update numberOfBooks
+    numberOfBooks = bookList.size();
   }
 
-  // Getter for bookList
   std::vector<Book> getBookList() const { return bookList; }
 
-  // Setter for numberOfBooks
   void setNumberOfBooks(int newNumberOfBooks) {
     if (newNumberOfBooks >= 0) {
       numberOfBooks = newNumberOfBooks;
@@ -94,7 +89,6 @@ public:
     }
   }
 
-  // Getter for numberOfBooks
   int getNumberOfBooks() const { return numberOfBooks; }
 
   vector<string> books() const {
