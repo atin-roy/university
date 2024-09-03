@@ -1,0 +1,5 @@
+Original Linked List: 10->15->20->30
+Size of the linked list: 4
+Linked List after deletion at position 3: 10->15->30
+Reversed Linked List: 30->15->10
+Linked List printed in reverse order: 10<-15<-30
